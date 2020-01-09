@@ -23,4 +23,20 @@ router.post("/create-user", async (req, res) => {
   }
 });
 
+//get all user
+
+router.get("/all-users", (req, res) => {
+  User.find({})
+    .then(user => res.json(user))
+    .catch(err => console.log(err));
+});
+
+//get specific user
+
+router.get(":user", (req, res) => {
+  User.findById(req.params.user)
+    .then(user => res.json(user))
+    .catch(err => console.log(err));
+});
+
 module.exports = router;
